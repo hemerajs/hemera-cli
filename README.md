@@ -7,8 +7,8 @@ Use the [hemera-stats](https://github.com/hemerajs/hemera/tree/master/packages/h
 ## Install
 
 ```js
-npm install
-node .
+npm install -g hemera-cli
+hemera-cli
 ```
 
 ### List services
