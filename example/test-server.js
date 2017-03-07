@@ -4,7 +4,7 @@ const HemeraStats = require('hemera-stats')
 const nats = require('nats').connect()
 
 const hemera = new Hemera(nats, {
-  name: 'math-node',
+  name: 'math-node-' + process.argv[2],
   load: {
     sampleInterval: 1
   }
