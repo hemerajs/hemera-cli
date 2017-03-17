@@ -14,20 +14,23 @@
   "engines": {
     "node": ">=4.0.0"
   },
+  "bin": {
+    "hemera-cli": "./index.js"
+  },
   "dependencies": {
     "cli-table": "^0.3.1",
     "humanize": "0.0.9",
     "lodash": "^4.17.4",
     "nats": "^0.7.10",
     "nats-hemera": "^0.8.2",
-    "vorpal": "^1.11.4"
+    "vorpal": "^1.11.4",
+    "hemera-joi": "^0.1.78",
+    "hemera-stats": "^1.0.7"
   },
   "devDependencies": {
     "eslint": "^3.13.1",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.2",
-    "eslint-plugin-standard": "^2.0.1",
-    "hemera-joi": "^0.1.78",
-    "hemera-stats": "^1.0.7"
+    "eslint-plugin-standard": "^2.0.1"
   }
 }

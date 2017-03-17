@@ -1,6 +1,7 @@
+#!/usr/bin/env node
+
 const vorpal = require('vorpal')()
 const Hemera = require('nats-hemera')
-const Nats = require('nats')
 const _ = require('lodash')
 const Humanize = require('humanize')
 const CliTable = require('cli-table')
