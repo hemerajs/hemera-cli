@@ -32,6 +32,8 @@ $ create plugin user-profile
 
 ### List services
 
+List all available services in your network.
+
 #### Prerequisites
 
 You have to use the [hemera-stats](https://github.com/hemerajs/hemera/tree/master/packages/hemera-stats) plugin.
@@ -39,10 +41,11 @@ You have to use the [hemera-stats](https://github.com/hemerajs/hemera/tree/maste
 ```
 $ services
 ```
-![Hemera](https://github.com/hemerajs/hemera-cli/blob/master/media/hemera-cli.png?raw=true)
 
 
 ### List actions
+
+List all available actions in your network.
 
 #### Prerequisites
 
@@ -50,4 +53,3 @@ You have to use the [hemera-stats](https://github.com/hemerajs/hemera/tree/maste
 ```
 $ actions
 ```
-![Hemera](https://github.com/hemerajs/hemera-cli/blob/master/media/actions.png?raw=true)
