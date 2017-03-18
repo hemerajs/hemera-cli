@@ -15,51 +15,52 @@ vorpal.command('create plugin <name>', 'Create basic plugin template').action(fu
   if (Fs.existsSync('./' + 'hemera-' + args.name)) {
     return cb(new Error('Directory "' + 'hemera-' + args.name + '" already exists, try a different project name'))
   }
-  const rootPath = Path.join(Path.resolve(__dirname), 'hemera-' + args.name)
+  const rootPath = Path.join(Path.resolve(__dirname))
+  const currentRoot = Path.join('./', 'hemera-' + args.name)
   Dot.templateSettings.strip = false
   Dot.templateSettings.varname = 'data'
 
   // plugin
-  const tpl = Fs.readFileSync(Path.join('.', 'templates/plugin.jst'))
+  const tpl = Fs.readFileSync(Path.join(rootPath, 'templates', 'plugin.jst'))
   const pluginTpl = Dot.template(tpl)
-  Fs.mkdirSync(rootPath)
-  Fs.writeFileSync(Path.join(rootPath, 'index.js'), pluginTpl({
+  Fs.mkdirSync(currentRoot)
+  Fs.writeFileSync(Path.join(currentRoot, 'index.js'), pluginTpl({
     name: args.name.charAt(0).toUpperCase() + args.name.slice(1),
     topic: args.name
   }))
 
   // package.json
-  const pack = Fs.readFileSync(Path.join('.', 'templates/package.jst'))
+  const pack = Fs.readFileSync(Path.join(rootPath, 'templates', 'package.jst'))
   const packTpl = Dot.template(pack)
-  Fs.writeFileSync(Path.join(rootPath, 'package.json'), packTpl({
+  Fs.writeFileSync(Path.join(currentRoot, 'package.json'), packTpl({
     name: args.name
   }))
 
   // eslint
-  const eslint = Fs.readFileSync(Path.join('.', 'templates/eslintrc.jst'))
+  const eslint = Fs.readFileSync(Path.join(rootPath, 'templates', 'eslintrc.jst'))
   const eslintTpl = Dot.template(eslint)
-  Fs.writeFileSync(Path.join(rootPath, '.eslintrc.js'), eslintTpl())
+  Fs.writeFileSync(Path.join(currentRoot, '.eslintrc.js'), eslintTpl())
 
   // README
-  const readme = Fs.readFileSync(Path.join('.', 'templates/readme.jst'))
+  const readme = Fs.readFileSync(Path.join(rootPath, 'templates', 'readme.jst'))
   const readmeTpl = Dot.template(readme)
-  Fs.writeFileSync(Path.join(rootPath, 'README.md'), readmeTpl({
+  Fs.writeFileSync(Path.join(currentRoot, 'README.md'), readmeTpl({
     name: 'hemera-' + args.name,
     topic: args.name
   }))
 
   // test directory
-  Fs.mkdirSync(Path.join(rootPath, 'test'))
+  Fs.mkdirSync(Path.join(currentRoot, 'test'))
 
   // test example
   const testsuite = Fs.readFileSync(Path.join('.', 'templates/test.jst'))
   const testsuiteTpl = Dot.template(testsuite)
-  Fs.writeFileSync(Path.join(rootPath, 'test', 'index.spec.js'), testsuiteTpl({
+  Fs.writeFileSync(Path.join(currentRoot, 'test', 'index.spec.js'), testsuiteTpl({
     name: 'hemera-' + args.name,
     topic: args.name
   }))
 
-  this.log('Plugin created! ' + rootPath)
+  this.log('Plugin created! ' + Path.resolve(currentRoot))
 
   cb()
 })
