@@ -5,14 +5,70 @@ const Hemera = require('nats-hemera')
 const _ = require('lodash')
 const Humanize = require('humanize')
 const CliTable = require('cli-table')
+const Dot = require('dot')
+const Fs = require('fs')
+const Path = require('path')
 
 let hemera = null
 
+vorpal.command('create plugin <name>', 'Create basic plugin template').action(function (args, cb) {
+  if (Fs.existsSync('./' + 'hemera-' + args.name)) {
+    return cb(new Error('Directory "' + 'hemera-' + args.name + '" already exists, try a different project name'))
+  }
+  const rootPath = Path.join(Path.resolve(__dirname), 'hemera-' + args.name)
+  Dot.templateSettings.strip = false
+  Dot.templateSettings.varname = 'data'
+
+  // plugin
+  const tpl = Fs.readFileSync(Path.join('.', 'templates/plugin.jst'))
+  const pluginTpl = Dot.template(tpl)
+  Fs.mkdirSync(rootPath)
+  Fs.writeFileSync(Path.join(rootPath, 'index.js'), pluginTpl({
+    name: args.name.charAt(0).toUpperCase() + args.name.slice(1),
+    topic: args.name
+  }))
+
+  // package.json
+  const pack = Fs.readFileSync(Path.join('.', 'templates/package.jst'))
+  const packTpl = Dot.template(pack)
+  Fs.writeFileSync(Path.join(rootPath, 'package.json'), packTpl({
+    name: args.name
+  }))
+
+  // eslint
+  const eslint = Fs.readFileSync(Path.join('.', 'templates/eslintrc.jst'))
+  const eslintTpl = Dot.template(eslint)
+  Fs.writeFileSync(Path.join(rootPath, '.eslintrc.js'), eslintTpl())
+
+  // README
+  const readme = Fs.readFileSync(Path.join('.', 'templates/readme.jst'))
+  const readmeTpl = Dot.template(readme)
+  Fs.writeFileSync(Path.join(rootPath, 'README.md'), readmeTpl({
+    name: 'hemera-' + args.name,
+    topic: args.name
+  }))
+
+  // test directory
+  Fs.mkdirSync(Path.join(rootPath, 'test'))
+
+  // test example
+  const testsuite = Fs.readFileSync(Path.join('.', 'templates/test.jst'))
+  const testsuiteTpl = Dot.template(testsuite)
+  Fs.writeFileSync(Path.join(rootPath, 'test', 'index.spec.js'), testsuiteTpl({
+    name: 'hemera-' + args.name,
+    topic: args.name
+  }))
+
+  this.log('Plugin created! ' + rootPath)
+
+  cb()
+})
+
 vorpal.command('clean', 'Clear the console')
-    .action(function (args, cb) {
-      process.stdout.write('\u001B[2J\u001B[0;0f')
-      cb()
-    })
+  .action(function (args, cb) {
+    process.stdout.write('\u001B[2J\u001B[0;0f')
+    cb()
+  })
 
 vorpal.command('connect', 'Connect to NATS Server').action(function (args, cb) {
   var self = this
@@ -56,132 +112,132 @@ vorpal.command('connect', 'Connect to NATS Server').action(function (args, cb) {
 })
 
 vorpal.command('services', 'List all available services of your network')
-    .validate(function (args) {
-      if (hemera) {
-        return true
-      } else {
-        return 'Please connect at first with the NATS server'
-      }
-    })
-    .action(function (args, callback) {
-      const self = this
-      const services = []
+  .validate(function (args) {
+    if (hemera) {
+      return true
+    } else {
+      return 'Please connect at first with the NATS server'
+    }
+  })
+  .action(function (args, callback) {
+    const self = this
+    const services = []
 
-      function drawProcessTable (resp) {
-        const table = new CliTable({
-          head: ['Service', 'Uptime', 'Env', 'LoopDelay', 'Heap', 'Rss', 'Date']
-        })
-
-        const index = _.findIndex(services, function (o) {
-          return o.app === resp.app
-        })
-
-        if (index !== -1) {
-          services[index] = resp
-        } else {
-          services.push(resp)
-        }
-
-        _.each(services, (service) => {
-          table.push([service.app, Humanize.relativeTime(Humanize.time() - service.uptime), service.nodeEnv, Humanize.numberFormat(service.eventLoopDelay) + 'ms', Humanize.filesize(service.heapUsed), Humanize.filesize(service.rss), new Date(service.ts).toISOString()])
-        })
-
-        vorpal.ui.redraw('\n\n' + table.toString() + '\n\n')
-      }
-
-      hemera.act({
-        topic: 'stats',
-        cmd: 'processInfo'
-      }, function (err, resp) {
-        if (err) {
-          callback()
-          if (err.name === 'TimeoutError') {
-            return self.log('No services available!')
-          } else {
-            return self.log(err)
-          }
-        }
-        drawProcessTable(resp)
-        callback()
+    function drawProcessTable (resp) {
+      const table = new CliTable({
+        head: ['Service', 'Uptime', 'Env', 'LoopDelay', 'Heap', 'Rss', 'Date']
       })
+
+      const index = _.findIndex(services, function (o) {
+        return o.app === resp.app
+      })
+
+      if (index !== -1) {
+        services[index] = resp
+      } else {
+        services.push(resp)
+      }
+
+      _.each(services, (service) => {
+        table.push([service.app, Humanize.relativeTime(Humanize.time() - service.uptime), service.nodeEnv, Humanize.numberFormat(service.eventLoopDelay) + 'ms', Humanize.filesize(service.heapUsed), Humanize.filesize(service.rss), new Date(service.ts).toISOString()])
+      })
+
+      vorpal.ui.redraw('\n\n' + table.toString() + '\n\n')
+    }
+
+    hemera.act({
+      topic: 'stats',
+      cmd: 'processInfo'
+    }, function (err, resp) {
+      if (err) {
+        callback()
+        if (err.name === 'TimeoutError') {
+          return self.log('No services available!')
+        } else {
+          return self.log(err)
+        }
+      }
+      drawProcessTable(resp)
+      callback()
     })
+  })
 
 vorpal.command('actions', 'List all available actions of your network')
-    .validate(function (args) {
-      if (hemera) {
-        return true
-      } else {
-        return 'Please connect at first with the NATS server'
-      }
-    })
-    .action(function (args, callback) {
-      const self = this
-      const services = []
+  .validate(function (args) {
+    if (hemera) {
+      return true
+    } else {
+      return 'Please connect at first with the NATS server'
+    }
+  })
+  .action(function (args, callback) {
+    const self = this
+    const services = []
 
-      function patternToString (args) {
-        if (_.isString(args)) {
-          return args
-        }
-
-        args = args || {}
-        let sb = []
-        _.each(args, function (v, k) {
-          if (!~k.indexOf('$') && !_.isFunction(v)) {
-            sb.push(k + ':' + v)
-          }
-        })
-
-        sb.sort()
-
-        return sb.join(',')
+    function patternToString (args) {
+      if (_.isString(args)) {
+        return args
       }
 
-      function drawActionTable (resp) {
-        const table = new CliTable({
-          head: ['Pattern', 'Service', 'Plugin']
-        })
-
-        const index = _.findIndex(services, function (o) {
-          return o.app === resp.app
-        })
-
-        if (index !== -1) {
-          services[index] = resp
-        } else {
-          services.push(resp)
+      args = args || {}
+      let sb = []
+      _.each(args, function (v, k) {
+        if (!~k.indexOf('$') && !_.isFunction(v)) {
+          sb.push(k + ':' + v)
         }
-
-        _.each(services, (service) => {
-          _.each(service.actions, (act) => {
-            const pattern = patternToString(act.pattern)
-            const entry = {}
-            entry[pattern] = [service.app, act.plugin]
-            table.push(entry)
-          })
-        })
-
-        vorpal.ui.redraw('\n\n' + table.toString() + '\n\n')
-      }
-
-      hemera.act({
-        topic: 'stats',
-        cmd: 'registeredActions'
-      }, function (err, resp) {
-        if (err) {
-          callback()
-          if (err.name === 'TimeoutError') {
-            return self.log('No services available!')
-          } else {
-            return self.log(err)
-          }
-        }
-        drawActionTable(resp)
-        callback()
       })
+
+      sb.sort()
+
+      return sb.join(',')
+    }
+
+    function drawActionTable (resp) {
+      const table = new CliTable({
+        head: ['Pattern', 'Service', 'Plugin']
+      })
+
+      const index = _.findIndex(services, function (o) {
+        return o.app === resp.app
+      })
+
+      if (index !== -1) {
+        services[index] = resp
+      } else {
+        services.push(resp)
+      }
+
+      _.each(services, (service) => {
+        _.each(service.actions, (act) => {
+          const pattern = patternToString(act.pattern)
+          const entry = {}
+          entry[pattern] = [service.app, act.plugin]
+          table.push(entry)
+        })
+      })
+
+      vorpal.ui.redraw('\n\n' + table.toString() + '\n\n')
+    }
+
+    hemera.act({
+      topic: 'stats',
+      cmd: 'registeredActions'
+    }, function (err, resp) {
+      if (err) {
+        callback()
+        if (err.name === 'TimeoutError') {
+          return self.log('No services available!')
+        } else {
+          return self.log(err)
+        }
+      }
+      drawActionTable(resp)
+      callback()
     })
+  })
 
 vorpal
-    .show()
-    .parse(process.argv)
+  .show()
+  .parse(process.argv)
 
 vorpal.log('Welcome to the Hemera CLI!')
