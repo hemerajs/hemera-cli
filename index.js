@@ -53,7 +53,7 @@ vorpal.command('create plugin <name>', 'Create basic plugin template').action(fu
   Fs.mkdirSync(Path.join(currentRoot, 'test'))
 
   // test example
-  const testsuite = Fs.readFileSync(Path.join('.', 'templates/test.jst'))
+  const testsuite = Fs.readFileSync(Path.join(rootPath, 'templates/test.jst'))
   const testsuiteTpl = Dot.template(testsuite)
   Fs.writeFileSync(Path.join(currentRoot, 'test', 'index.spec.js'), testsuiteTpl({
     name: 'hemera-' + args.name,
