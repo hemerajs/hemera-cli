@@ -8,6 +8,7 @@ const CliTable = require('cli-table')
 const Dot = require('dot')
 const Fs = require('fs')
 const Path = require('path')
+const CamelCase = require('camelcase')
 
 let hemera = null
 
@@ -22,10 +23,11 @@ vorpal.command('create plugin <name>', 'Create basic plugin template').action(fu
 
   // plugin
   const tpl = Fs.readFileSync(Path.join(rootPath, 'templates', 'plugin.jst'))
+  let pluginName = CamelCase(args.name)
   const pluginTpl = Dot.template(tpl)
   Fs.mkdirSync(currentRoot)
   Fs.writeFileSync(Path.join(currentRoot, 'index.js'), pluginTpl({
-    name: args.name.charAt(0).toUpperCase() + args.name.slice(1),
+    name: pluginName.charAt(0).toUpperCase() + pluginName.slice(1),
     topic: args.name
   }))
 
