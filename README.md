@@ -14,20 +14,14 @@ hemera-cli
 ```
 $ create plugin user-profile
 ```
-1. Create basic plugin functionality
-2. Create package.json
-3. Create README
-4. Create sample test
-5. Configure eslint
-
 __Structure__
 ```
-|   .eslintrc.js
-|   index.js
-|   package.json
-|   README.md
+|   .eslintrc.js // Configure eslint
+|   index.js // Create basic plugin functionality
+|   package.json // Create package.json
+|   README.md // Create README with example and getting started section
 |
-\---test
+\---test // Create sample testsuite
         index.spec.js
 ```
 
