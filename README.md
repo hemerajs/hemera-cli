@@ -7,6 +7,8 @@ npm install -g hemera-cli
 hemera-cli
 ```
 
+## Commands
+
 ### Create basic plugin template
 
 ```
@@ -18,7 +20,7 @@ $ create plugin user-profile
 4. Create sample test
 5. Configure eslint
 
-#### Structure
+__Structure__
 ```
 |   .eslintrc.js
 |   index.js
@@ -34,7 +36,7 @@ $ create plugin user-profile
 
 List all available services in your network.
 
-#### Prerequisites
+__Prerequisites__
 
 You have to use the [hemera-stats](https://github.com/hemerajs/hemera/tree/master/packages/hemera-stats) plugin.
 
@@ -47,7 +49,7 @@ $ services
 
 List all available actions in your network.
 
-#### Prerequisites
+__Prerequisites__
 
 You have to use the [hemera-stats](https://github.com/hemerajs/hemera/tree/master/packages/hemera-stats) plugin.
 ```
