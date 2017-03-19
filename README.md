@@ -35,6 +35,7 @@ __Prerequisites__
 You have to use the [hemera-stats](https://github.com/hemerajs/hemera/tree/master/packages/hemera-stats) plugin.
 
 ```
+$ connect
 $ services
 ```
 
@@ -47,5 +48,6 @@ __Prerequisites__
 
 You have to use the [hemera-stats](https://github.com/hemerajs/hemera/tree/master/packages/hemera-stats) plugin.
 ```
+$ connect
 $ actions
 ```
