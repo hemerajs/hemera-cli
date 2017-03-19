@@ -12,7 +12,7 @@ hemera-cli
 ### Create basic plugin template
 
 ```
-$ create plugin user-profile
+$ create plugin <name>
 ```
 __Structure__
 ```
