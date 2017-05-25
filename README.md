@@ -33,7 +33,7 @@ List all available services in your network.
 
 __Prerequisites__
 
-You have to use the [hemera-stats](https://github.com/hemerajs/hemera/tree/master/packages/hemera-stats) plugin.
+You service have to use the [hemera-stats](https://github.com/hemerajs/hemera/tree/master/packages/hemera-stats) plugin.
 
 ```
 $ connect
@@ -47,7 +47,7 @@ List all available actions in your network.
 
 __Prerequisites__
 
-You have to use the [hemera-stats](https://github.com/hemerajs/hemera/tree/master/packages/hemera-stats) plugin.
+You service have to use the [hemera-stats](https://github.com/hemerajs/hemera/tree/master/packages/hemera-stats) plugin.
 ```
 $ connect
 $ actions
