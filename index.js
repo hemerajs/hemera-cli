@@ -177,24 +177,6 @@ vorpal.command('actions', 'List all available actions of your network')
     const self = this
     const services = []
 
-    function patternToString (args) {
-      if (_.isString(args)) {
-        return args
-      }
-
-      args = args || {}
-      let sb = []
-      _.each(args, function (v, k) {
-        if (!~k.indexOf('$') && !_.isFunction(v)) {
-          sb.push(k + ':' + v)
-        }
-      })
-
-      sb.sort()
-
-      return sb.join(',')
-    }
-
     function drawActionTable (resp) {
       const table = new CliTable({
         head: ['Pattern', 'Service', 'Plugin']
@@ -244,3 +226,21 @@ vorpal
   .parse(process.argv)
 
 vorpal.log('Welcome to the Hemera CLI!')
+
+function patternToString (args) {
+  if (_.isString(args)) {
+    return args
+  }
+
+  args = args || {}
+  let sb = []
+  _.each(args, function (v, k) {
+    if (!~k.indexOf('$') && !_.isFunction(v) && !_.isObject(v)) {
+      sb.push(k + ':' + v)
+    }
+  })
+
+  sb.sort()
+
+  return sb.join(',')
+}
