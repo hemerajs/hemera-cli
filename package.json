@@ -1,6 +1,6 @@
 {
   "name": "hemera-cli",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "CLI for Hemera",
   "main": "index.js",
   "author": "Dustin Deus (https://github.com/StarpTech)",
@@ -18,21 +18,23 @@
     "hemera-cli": "./index.js"
   },
   "dependencies": {
-    "camelcase": "^4.0.0",
-    "cli-table": "^0.3.1",
-    "dot": "^1.1.1",
-    "hemera-joi": "^0.1.78",
-    "hemera-stats": "^1.0.7",
+    "camelcase": "4.1.0",
+    "cli-table": "0.3.1",
+    "dot": "1.1.2",
+    "hemera-joi": "1.1.1",
+    "hemera-stats": "1.0.11",
     "humanize": "0.0.9",
-    "lodash": "^4.17.4",
-    "nats": "^0.7.10",
-    "nats-hemera": "^0.8.2",
-    "vorpal": "^1.11.4"
+    "lodash": "4.17.x",
+    "nats": "0.7.20",
+    "nats-hemera": "1.2.15",
+    "vorpal": "1.11.x"
   },
   "devDependencies": {
-    "eslint": "^3.13.1",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-promise": "^3.4.2",
-    "eslint-plugin-standard": "^2.0.1"
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "10.2.x",
+    "eslint-plugin-import": "2.3.x",
+    "eslint-plugin-node": "4.2.x",
+    "eslint-plugin-promise": "3.5.x",
+    "eslint-plugin-standard": "3.0.x"
   }
 }

@@ -150,7 +150,8 @@ vorpal.command('services', 'List all available services of your network')
 
     hemera.act({
       topic: 'stats',
-      cmd: 'processInfo'
+      cmd: 'processInfo',
+      maxMessages$: -1
     }, function (err, resp) {
       if (err) {
         callback()
@@ -206,7 +207,8 @@ vorpal.command('actions', 'List all available actions of your network')
 
     hemera.act({
       topic: 'stats',
-      cmd: 'registeredActions'
+      cmd: 'registeredActions',
+      maxMessages$: -1
     }, function (err, resp) {
       if (err) {
         callback()
@@ -225,7 +227,7 @@ vorpal
   .show()
   .parse(process.argv)
 
-vorpal.log('Welcome to the Hemera CLI!')
+vorpal.log('Welcome to the Hemera CLI! v' + require('./package.json').version)
 
 function patternToString (args) {
   if (_.isString(args)) {
