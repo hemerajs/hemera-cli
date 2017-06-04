@@ -17,7 +17,6 @@ $ create plugin <name>
 ```
 __Structure__
 ```
-|   .eslintrc.js // Configure eslint
 |   index.js // Create basic plugin functionality
 |   package.json // Create package.json
 |   README.md // Create README with example and getting started section
