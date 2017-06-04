@@ -38,11 +38,6 @@ vorpal.command('create plugin <name>', 'Create basic plugin template').action(fu
     name: args.name
   }))
 
-  // eslint
-  const eslint = Fs.readFileSync(Path.join(rootPath, 'templates', 'eslintrc.jst'))
-  const eslintTpl = Dot.template(eslint)
-  Fs.writeFileSync(Path.join(currentRoot, '.eslintrc.js'), eslintTpl())
-
   // README
   const readme = Fs.readFileSync(Path.join(rootPath, 'templates', 'readme.jst'))
   const readmeTpl = Dot.template(readme)

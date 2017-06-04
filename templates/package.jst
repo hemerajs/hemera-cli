@@ -1,10 +1,10 @@
 {
   "name": "hemera-{{=data.name}}",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "This is your hemera plugin",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint index.js",
+    "lint": "standard --fix index.js",
     "test": "nyc mocha -t 5000 ./test/**/*.js",
     "coverage": "npm run test && nyc report --reporter=html"
   },
@@ -14,25 +14,21 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "hemera-plugin": "^0.0.2",
+    "hemera-joi": "1.x"
   },
   "peerDependencies": {
-    "hemera-joi": "1.x",
     "nats-hemera": "1.x || 2.x"
   },
   "devDependencies": {
     "code": "4.0.x",
-    "eslint": "3.19.x",
-    "eslint-config-standard": "10.2.x",
-    "eslint-plugin-import": "2.2.x",
-    "eslint-plugin-node": "4.2.x",
-    "eslint-plugin-promise": "3.5.x",
-    "eslint-plugin-standard": "3.0.x",
     "hemera-testsuite": "1.x",
     "istanbul": "0.4.x",
     "mocha": "3.2.x",
     "mocha-lcov-reporter": "1.2.x",
     "nyc": "10.3.x",
     "nats-hemera": "1.x",
-    "nats": "0.7.x"
+    "nats": "0.7.x",
+    "standard": "^10.0.2"
   }
 }

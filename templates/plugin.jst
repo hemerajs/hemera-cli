@@ -1,6 +1,8 @@
 'use strict'
 
-exports.plugin = function hemera{{=data.name}} (options, next) {
+const Hp = require('hemera-plugin')
+
+exports.plugin = Hp(function hemera{{=data.name}} (options, next) {
   const hemera = this
   const topic = '{{=data.topic}}'
 
@@ -12,7 +14,7 @@ exports.plugin = function hemera{{=data.name}} (options, next) {
   })
 
   next()
-}
+})
 
 exports.options = {}
 
