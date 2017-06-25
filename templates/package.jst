@@ -4,7 +4,8 @@
   "description": "This is your hemera plugin",
   "main": "index.js",
   "scripts": {
-    "lint": "standard --fix index.js",
+    "lint": "standard index.js",
+    "lintfix": "standard --fix index.js",
     "test": "nyc mocha -t 5000 ./test/**/*.js",
     "coverage": "npm run test && nyc report --reporter=html"
   },
