@@ -1,5 +1,7 @@
 # Hemera-cli
-[![js-standard-style](https://raw.githubusercontent.com/feross/standard/master/badge.png)](https://github.com/feross/standard)
+[![NPM Downloads](https://img.shields.io/npm/dt/hemera-cli.svg?style=flat)](https://www.npmjs.com/package/hemera-cli)
+[![npm](https://img.shields.io/npm/v/hemera-cli.svg?maxAge=3600)](https://www.npmjs.com/package/hemera-cli)
+[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 
 ## Install
 
