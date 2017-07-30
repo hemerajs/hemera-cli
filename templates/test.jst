@@ -42,8 +42,7 @@ describe('{{=data.name}}', function () {
         expect(err).not.to.be.exists()
         expect(resp).to.be.equals(3)
 
-        hemera.close()
-        done()
+        hemera.close(done)
       })
     })
   })
