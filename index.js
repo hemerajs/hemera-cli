@@ -9,6 +9,7 @@ const Dot = require('dot')
 const Fs = require('fs')
 const Path = require('path')
 const CamelCase = require('camelcase')
+const EOL = require('os').EOL
 
 let hemera = null
 
@@ -137,16 +138,18 @@ vorpal.command('services', 'List all available services of your network')
       }
 
       _.each(services, (service) => {
-        table.push([service.app,
-          Humanize.relativeTime(Humanize.time() - service.uptime), service.nodeEnv,
+        table.push([
+          service.app,
+          Humanize.relativeTime(Humanize.time() - service.uptime),
+          service.nodeEnv,
           Humanize.numberFormat(service.eventLoopDelay) + 'ms',
           Humanize.filesize(service.heapUsed),
           Humanize.filesize(service.rss),
           new Date(service.ts).toISOString()
         ])
       })
-
-      vorpal.ui.redraw('\n\n' + table.toString() + '\n\n')
+      vorpal.ui.redraw.clear()
+      vorpal.ui.redraw(EOL + table.toString() + EOL)
     }
 
     hemera.act({
@@ -202,8 +205,8 @@ vorpal.command('actions', 'List all available actions of your network')
           table.push(entry)
         })
       })
-
-      vorpal.ui.redraw('\n\n' + table.toString() + '\n\n')
+      vorpal.ui.redraw.clear()
+      vorpal.ui.redraw(EOL + table.toString() + EOL)
     }
 
     hemera.act({
