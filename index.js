@@ -125,6 +125,7 @@ vorpal.command('act', 'Start a request')
   })
   .action(function (args, callback) {
     hemera.act(args.options.pattern, (err, resp) => {
+      vorpal.ui.redraw.clear()
       vorpal.ui.redraw(Prettyjson.render(err || resp))
     })
     callback()
