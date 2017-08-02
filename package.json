@@ -1,6 +1,6 @@
 {
   "name": "hemera-cli",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "CLI for Hemera",
   "main": "index.js",
   "author": "Dustin Deus (https://github.com/StarpTech)",
