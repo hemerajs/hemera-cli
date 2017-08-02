@@ -53,3 +53,13 @@ You service have to use the [hemera-stats](https://github.com/hemerajs/hemera/tr
 $ connect
 $ actions
 ```
+
+### Start a request
+
+Start a request against a server method and print the ouput in a coloured YAML-style, perfect for CLI output.
+
+```
+$ connect
+$ act --pattern topic:math,cmd:add,a:2,b:44
+$ result: 46
+```
