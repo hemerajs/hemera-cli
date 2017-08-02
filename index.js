@@ -9,6 +9,7 @@ const Dot = require('dot')
 const Fs = require('fs')
 const Path = require('path')
 const CamelCase = require('camelcase')
+const Prettyjson = require('prettyjson')
 const EOL = require('os').EOL
 
 let hemera = null
@@ -64,6 +65,7 @@ vorpal.command('create plugin <name>', 'Create basic plugin template').action(fu
 })
 
 vorpal.command('clean', 'Clear the console')
+  .alias('cls')
   .action(function (args, cb) {
     process.stdout.write('\u001B[2J\u001B[0;0f')
     cb()
@@ -104,11 +106,29 @@ vorpal.command('connect', 'Connect to NATS Server').action(function (args, cb) {
 
     hemera.ready(() => {
       self.log('Connected to NATS Server')
-
       cb()
     })
   })
 })
+
+vorpal.command('act', 'Start a request')
+  .option('-p, --pattern <pattern>', 'String pattern of the action')
+  .types({
+    string: ['p', 'pattern']
+  })
+  .validate(function (args) {
+    if (hemera) {
+      return true
+    } else {
+      return 'Please connect at first with the NATS server'
+    }
+  })
+  .action(function (args, callback) {
+    hemera.act(args.options.pattern, (err, resp) => {
+      vorpal.ui.redraw(Prettyjson.render(err || resp))
+    })
+    callback()
+  })
 
 vorpal.command('services', 'List all available services of your network')
   .validate(function (args) {

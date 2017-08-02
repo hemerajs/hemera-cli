@@ -24,6 +24,8 @@ hemera.ready(() => {
     cmd: 'add',
     a: Joi.number().required()
   }, (req, cb) => {
-    cb(null, req.a + req.b)
+    cb(null, {
+      result: req.a + req.b
+    })
   })
 })
