@@ -137,7 +137,13 @@ vorpal.command('services', 'List all available services of your network')
       }
 
       _.each(services, (service) => {
-        table.push([service.app, Humanize.relativeTime(Humanize.time() - service.uptime), service.nodeEnv, Humanize.numberFormat(service.eventLoopDelay) + 'ms', Humanize.filesize(service.heapUsed), Humanize.filesize(service.rss), new Date(service.ts).toISOString()])
+        table.push([service.app,
+          Humanize.relativeTime(Humanize.time() - service.uptime), service.nodeEnv,
+          Humanize.numberFormat(service.eventLoopDelay) + 'ms',
+          Humanize.filesize(service.heapUsed),
+          Humanize.filesize(service.rss),
+          new Date(service.ts).toISOString()
+        ])
       })
 
       vorpal.ui.redraw('\n\n' + table.toString() + '\n\n')

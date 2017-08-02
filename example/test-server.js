@@ -6,7 +6,9 @@ const nats = require('nats').connect()
 const hemera = new Hemera(nats, {
   name: 'math-node-' + process.argv[2],
   load: {
-    sampleInterval: 1
+    process: {
+      sampleInterval: 100
+    }
   }
 })
 
@@ -14,6 +16,7 @@ hemera.use(HemeraStats)
 hemera.use(HemeraJoi)
 
 hemera.ready(() => {
+  hemera.setOption('payloadValidator', 'hemera-joi')
   let Joi = hemera.exposition['hemera-joi'].joi
 
   hemera.add({

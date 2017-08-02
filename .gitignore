@@ -32,3 +32,5 @@ jspm_packages
 .vscode
 
 *heapsnapshot
+
+package-lock.json
