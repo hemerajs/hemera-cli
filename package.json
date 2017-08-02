@@ -31,7 +31,7 @@
     "humanize": "0.0.9",
     "lodash": "4.17.4",
     "nats": "0.7.20",
-    "nats-hemera": "1.5.x",
+    "nats-hemera": "^1.5.2",
     "prettyjson": "^1.2.1",
     "vorpal": "1.12.0"
   },

@@ -104,6 +104,8 @@ vorpal.command('connect', 'Connect to NATS Server').action(function (args, cb) {
       crashOnFatal: false
     })
 
+    hemera.on('error', (err) => self.log(err))
+
     hemera.ready(() => {
       self.log('Connected to NATS Server')
       cb()
