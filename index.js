@@ -161,10 +161,11 @@ vorpal.command('services', 'List all available services of your network')
       }
 
       _.each(services, (service) => {
+        console.log(service)
         table.push([
           service.app,
           Humanize.relativeTime(Humanize.time() - service.uptime),
-          service.nodeEnv,
+          service.nodeEnv || '', // #2 undefined values will crash it
           Humanize.numberFormat(service.eventLoopDelay) + 'ms',
           Humanize.filesize(service.heapUsed),
           Humanize.filesize(service.rss),
