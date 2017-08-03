@@ -129,6 +129,7 @@ vorpal.command('act', 'Start a request')
     hemera.act(args.options.pattern, (err, resp) => {
       vorpal.ui.redraw.clear()
       vorpal.ui.redraw(Prettyjson.render(err || resp))
+      vorpal.ui.redraw.done()
     })
     callback()
   })
@@ -172,7 +173,8 @@ vorpal.command('services', 'List all available services of your network')
         ])
       })
       vorpal.ui.redraw.clear()
-      vorpal.ui.redraw(EOL + table.toString() + EOL)
+      vorpal.ui.redraw(table.toString())
+      vorpal.ui.redraw.done()
     }
 
     hemera.act({
@@ -229,7 +231,8 @@ vorpal.command('actions', 'List all available actions of your network')
         })
       })
       vorpal.ui.redraw.clear()
-      vorpal.ui.redraw(EOL + table.toString() + EOL)
+      vorpal.ui.redraw(table.toString())
+      vorpal.ui.redraw.done()
     }
 
     hemera.act({
