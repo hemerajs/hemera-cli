@@ -161,7 +161,6 @@ vorpal.command('services', 'List all available services of your network')
       }
 
       _.each(services, (service) => {
-        console.log(service)
         table.push([
           service.app,
           Humanize.relativeTime(Humanize.time() - service.uptime),
