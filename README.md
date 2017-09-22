@@ -12,21 +12,13 @@ hemera-cli
 
 ## Commands
 
-## Create basic plugin template
+## Create plugin
+
+Create a basic plugin hemera plugin with a test suite.
 
 ```
 $ create plugin <name>
 ```
-__Structure__
-```
-|   index.js // Create basic plugin functionality
-|   package.json // Create package.json
-|   README.md // Create README with example and getting started section
-|
-\---test // Create sample testsuite
-        index.spec.js
-```
-
 
 ## List services
 
