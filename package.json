@@ -26,17 +26,17 @@
     "camelcase": "4.1.0",
     "cli-table": "0.3.1",
     "dot": "1.1.2",
-    "hemera-joi": "1.2.x",
-    "hemera-stats": "1.0.x",
+    "hemera-joi": "^2.0.0",
+    "hemera-stats": "^2.0.0",
     "humanize": "0.0.9",
     "lodash": "4.17.4",
     "nats": "0.7.20",
-    "nats-hemera": "^1.5.2",
+    "nats-hemera": "^2.0.0-0",
     "prettyjson": "^1.2.1",
     "vorpal": "1.12.0"
   },
   "devDependencies": {
-    "standard": "^10.0.2"
+    "standard": "^10.0.3"
   },
   "standard": {
     "ignore": [

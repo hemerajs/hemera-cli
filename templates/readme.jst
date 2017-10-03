@@ -12,14 +12,14 @@ Your plugin description
 'use strict'
 
 const Hemera = require('nats-hemera')
-const Plugin = require('{{=data.name}}')
+const plugin = require('{{=data.name}}')
 const nats = require('nats').connect()
 
 const hemera = new Hemera(nats, {
   logLevel: 'info'
 })
 
-hemera.use(Plugin)
+hemera.use(plugin)
 
 hemera.ready(() => {
   hemera.act({
