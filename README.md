@@ -26,7 +26,7 @@ List all available services in your network.
 
 __Prerequisites__
 
-You service have to use the [hemera-stats](https://github.com/hemerajs/hemera/tree/master/packages/hemera-stats) plugin. Look at this [example](/example/test-server.js).
+You service have to use the [hemera-stats](https://github.com/hemerajs/hemera/tree/master/packages/hemera-stats) plugin. Look at this [example](/examples/test-server.js).
 
 ```
 $ connect
@@ -40,7 +40,7 @@ List all available actions in your network.
 
 __Prerequisites__
 
-You service have to use the [hemera-stats](https://github.com/hemerajs/hemera/tree/master/packages/hemera-stats) plugin. Look at this [example](/example/test-server.js).
+You service have to use the [hemera-stats](https://github.com/hemerajs/hemera/tree/master/packages/hemera-stats) plugin. Look at this [example](/examples/test-server.js).
 ```
 $ connect
 $ actions
