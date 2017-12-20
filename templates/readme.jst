@@ -15,23 +15,8 @@ const Hemera = require('nats-hemera')
 const plugin = require('{{=data.name}}')
 const nats = require('nats').connect()
 
-const hemera = new Hemera(nats, {
-  logLevel: 'info'
-})
-
+const hemera = new Hemera(nats)
 hemera.use(plugin)
-
-hemera.ready(() => {
-  hemera.act({
-    topic: '{{=data.topic}}',
-    cmd: 'add',
-    a: 1,
-    b: 2
-  }, function (err, resp) {
-    this.log.info(resp, 'Result')
-  })
-})
-
 ```
 
 # Test

@@ -24,9 +24,9 @@ hemera.ready(() => {
     topic: 'math',
     cmd: 'add',
     a: Joi.number().required()
-  }, (req, cb) => {
-    cb(null, {
+  }, (req) => {
+    return {
       result: req.a + req.b
-    })
+    }
   })
 })

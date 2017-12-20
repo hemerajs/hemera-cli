@@ -6,30 +6,27 @@
   "scripts": {
     "lint": "standard index.js",
     "lintfix": "standard --fix index.js",
-    "test": "nyc mocha -t 5000 ./test/**/*.js",
+    "test": "nyc mocha --exit -t 5000 ./test/**/*.js",
     "coverage": "npm run test && nyc report --reporter=html"
   },
   "engines": {
-    "node": ">=4.5.0"
+    "node": ">=6.0.0"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "hemera-plugin": "^0.0.13",
-    "hemera-joi": "^2.0.0"
-  },
-  "peerDependencies": {
-    "nats-hemera": ">=2.0.0"
+    "hemera-plugin": "0.1.x",
+    "hemera-joi": "3.0.x"
   },
   "devDependencies": {
-    "code": "4.0.x",
-    "hemera-testsuite": "1.x",
-    "istanbul": "0.4.x",
-    "mocha": "3.2.x",
-    "mocha-lcov-reporter": "1.2.x",
-    "nyc": "10.3.x",
-    "nats-hemera": "^2.0.0",
-    "nats": "0.7.x",
-    "standard": "^10.0.2"
+    "code": "^3.0.2",
+    "hemera-testsuite": "^1.4.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^4.0.1",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^11.4.1",
+    "nats-hemera": "^3.0.1",
+    "nats": "^0.7.24",
+    "standard": "^10.0.3"
   }
 }

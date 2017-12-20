@@ -2,11 +2,7 @@
 
 const Hp = require('hemera-plugin')
 
-exports.options = {
-  name: require('./package.json').name
-}
-
-exports.plugin = Hp(hemera{{=data.name}}, '>=2.0.0-0')
+const plugin = Hp(hemera{{=data.name}}, '>=3.0.0')
 
 function hemera{{=data.name}} (hemera, opts, done) {
   const topic = '{{=data.topic}}'
@@ -14,9 +10,13 @@ function hemera{{=data.name}} (hemera, opts, done) {
   hemera.add({
     topic,
     cmd: 'add'
-  }, (req, cb) => {
-    cb(null, req.a + req.b)
-  })
+  }, (req) => req.a + req.b)
 
   done()
 }
+
+myPlugin[Symbol.for('name')] = require('./package.json').name
+myPlugin[Symbol.for('options')] = {}
+myPlugin[Symbol.for('dependencies')] = []
+
+module.exports = myPlugin
