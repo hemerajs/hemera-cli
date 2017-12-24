@@ -12,7 +12,7 @@ hemera-cli
 
 ## Commands
 
-## Create plugin
+### Create plugin
 
 Create a basic plugin hemera plugin with a test suite.
 
@@ -20,7 +20,7 @@ Create a basic plugin hemera plugin with a test suite.
 $ create plugin <name>
 ```
 
-## List services
+### List services
 
 List all available services in your network.
 
@@ -34,7 +34,7 @@ $ services
 ```
 
 
-## List actions
+### List actions
 
 List all available actions in your network.
 
@@ -46,7 +46,7 @@ $ connect
 $ actions
 ```
 
-## Start a request
+### Start a request
 
 Start a request against a server method and print the ouput in a coloured YAML-style, perfect for CLI output.
 
