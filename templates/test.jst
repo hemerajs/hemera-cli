@@ -18,7 +18,7 @@ describe('{{=data.name}}', function () {
 
   // Start up our own nats-server
   before(function (done) {
-    server = HemeraTestsuite.start_server(PORT, null, done)
+    server = HemeraTestsuite.start_server(PORT, done)
   })
 
   // Shutdown our server after we are done
