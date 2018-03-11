@@ -26,18 +26,18 @@
     "camelcase": "4.1.x",
     "cli-table": "0.3.x",
     "dot": "1.1.x",
-    "hemera-joi": "3.0.x",
-    "hemera-stats": "3.0.x",
+    "hemera-joi": "4.0.x",
+    "hemera-stats": "4.0.x",
     "humanize": "0.0.x",
     "lodash": "4.17.x",
-    "nats": "0.7.x",
-    "nats-hemera": "3.0.x",
+    "nats": "0.8.x",
+    "nats-hemera": "4.0.x",
     "prettyjson": "1.2.x",
     "vorpal": "1.12.x"
   },
   "devDependencies": {
-    "np": "^2.18.3",
-    "standard": "^10.0.3"
+    "np": "^2.20.1",
+    "standard": "^11.0.0"
   },
   "standard": {
     "ignore": [
