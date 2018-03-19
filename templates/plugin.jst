@@ -2,22 +2,21 @@
 
 const Hp = require('hemera-plugin')
 
-const plugin = Hp(hemera{{=data.name}},  {
-  hemera: '>=3',
-  name: '{{=data.name}}',
-  dependencies: ['hemera-joi'],
-  options: {}
-})
-
 function hemera{{=data.name}} (hemera, opts, done) {
   const topic = '{{=data.topic}}'
 
   hemera.add({
     topic,
     cmd: 'add'
-  }, (req) => req.a + req.b)
+  }, (req, cb) => {
+    cb(null, req.a + req.b)
+  }
 
   done()
 }
 
-module.exports = plugin
+module.exports = Hp(hemera{{=data.name}},  {
+  hemera: '>=5.0.0-rc.1',
+  name: require('./package.json').name,
+  options: {}
+})

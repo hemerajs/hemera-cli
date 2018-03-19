@@ -17,16 +17,19 @@ hemera.use(HemeraStats)
 hemera.use(HemeraJoi)
 
 hemera.ready(() => {
-  hemera.setOption('payloadValidator', 'hemera-joi')
   let Joi = hemera.joi
 
-  hemera.add({
-    topic: 'math',
-    cmd: 'add',
-    a: Joi.number().required()
-  }, (req) => {
-    return {
-      result: req.a + req.b
+  hemera.add(
+    {
+      topic: 'math',
+      cmd: 'add',
+      a: Joi.number().required(),
+      b: Joi.number().required()
+    },
+    (req, cb) => {
+      cb(null, {
+        result: req.a + req.b
+      })
     }
-  })
+  )
 })

@@ -26,28 +26,20 @@
     "camelcase": "4.1.x",
     "cli-table": "0.3.x",
     "dot": "1.1.x",
-    "hemera-joi": "4.0.x",
-    "hemera-stats": "4.0.x",
+    "hemera-joi": "5.0.x",
+    "hemera-stats": "5.0.x",
     "humanize": "0.0.x",
     "lodash": "4.17.x",
     "nats": "0.8.x",
-    "nats-hemera": "4.0.x",
+    "nats-hemera": ">=5.0.0-rc.1",
     "prettyjson": "1.2.x",
     "vorpal": "1.12.x"
   },
   "devDependencies": {
+    "eslint": "^4.19.0",
+    "eslint-config-hemera": "^0.0.2",
+    "nats": "^0.8.4",
     "np": "^2.20.1",
-    "standard": "^11.0.0"
-  },
-  "standard": {
-    "ignore": [
-      "node_modules"
-    ],
-    "envs": [
-      "es6",
-      "node",
-      "mocha"
-    ],
-    "globals": []
+    "prettier": "^1.11.1"
   }
 }

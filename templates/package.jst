@@ -4,10 +4,12 @@
   "description": "This is your hemera plugin",
   "main": "index.js",
   "scripts": {
-    "lint": "standard index.js",
-    "lintfix": "standard --fix index.js",
-    "test": "nyc mocha --exit -t 5000 ./test/**/*.js",
-    "coverage": "npm run test && nyc report --reporter=html"
+    "lint": "eslint ./**/*.js",
+    "test": "nyc mocha -t 5000 --exit ./test/**/*.js",
+    "coverage": "npm run test && nyc report --reporter=html",
+    "patch": "np patch --yolo",
+    "minor": "np minor --yolo",
+    "major": "np major --yolo"
   },
   "engines": {
     "node": ">=6.0.0"
@@ -19,14 +21,16 @@
     "hemera-joi": "3.1.x"
   },
   "devDependencies": {
-    "code": "^3.0.2",
-    "hemera-testsuite": "^2.0.5",
+    "code": "^4.1.0",
+    "eslint": "^4.19.0",
+    "eslint-config-hemera": "0.0.2",
     "istanbul": "^0.4.5",
-    "mocha": "^4.0.1",
+    "mocha": "^5.0.4",
     "mocha-lcov-reporter": "^1.3.0",
-    "nyc": "^11.4.1",
-    "nats-hemera": "^3.1.2",
-    "nats": "^0.7.24",
-    "standard": "^10.0.3"
+    "nats": "^0.8.4",
+    "nats-hemera": ">=5.0.0-rc.1",
+    "np": "^2.20.1",
+    "nyc": "^11.6.0",
+    "prettier": "^1.11.1"
   }
 }
